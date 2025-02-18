@@ -28,6 +28,9 @@ namespace Mission06_Hammond.Controllers
         [HttpGet]
         public IActionResult MovieForm()
         {
+            ViewBag.Categories = _context.Categories
+                .ToList(); // get the list of categories
+
             return View(); // return the view
         }
 
@@ -40,5 +43,12 @@ namespace Mission06_Hammond.Controllers
             return View("Index", response); // return the view
         }
 
+        public IActionResult MovieList()
+        {
+            var forms = _context.Forms
+                .Include(x => x.Category).ToList();
+
+            return View(forms); // return the view
+        }
     }
 }

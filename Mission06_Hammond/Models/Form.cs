@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Mission06_Hammond.Models
 {
@@ -11,7 +12,12 @@ namespace Mission06_Hammond.Models
         [Key]
         [Required]
         public int FormID { get; set; }
-        public string Category { get; set; }
+        
+        //sets up foreign key relationship
+        [ForeignKey("CategoryID")]
+        public int CategoryID { get; set; }
+        public Category Category { get; set; }
+
         public string Title { get; set; }
         public string Year { get; set; }
         public string Director { get; set; }
