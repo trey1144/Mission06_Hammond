@@ -35,9 +35,9 @@ namespace Mission06_Hammond.Controllers
         }
 
         [HttpPost]
-        public IActionResult MovieForm(Form response) // pass the instance of Form and the response data
+        public IActionResult MovieForm(Movies response) // pass the instance of Form and the response data
         {
-            _context.Forms.Add(response); // add record to the database
+            _context.Movies.Add(response); // add record to the database
             _context.SaveChanges(); // save changes to the database
 
             return View("Index", response); // return the view
@@ -45,10 +45,52 @@ namespace Mission06_Hammond.Controllers
 
         public IActionResult MovieList()
         {
-            var forms = _context.Forms
-                .Include(x => x.Category).ToList();
+            var forms = _context.Movies
+                .Include(x => x.Category)
+                // .OrderBy(x => x.Title)
+                .ToList();
 
             return View(forms); // return the view
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var recordToEdit = _context.Movies
+                .Single(x => x.MovieID == id);
+
+            ViewBag.Categories = _context.Categories
+                .OrderBy(x => x.CategoryName)
+                .ToList();
+
+            return View("MovieForm", recordToEdit);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Movies updatedInfo)
+        {
+            _context.Movies.Update(updatedInfo);
+            _context.SaveChanges();
+
+            return RedirectToAction("MovieList");
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var recordToDelete = _context.Movies
+                .Single(x => x.MovieID == id);
+
+            return View(recordToDelete);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Movies recordToDelete)
+        {
+            _context.Movies.Remove(recordToDelete);
+            _context.SaveChanges();
+
+            return RedirectToAction("MovieList");
         }
     }
 }

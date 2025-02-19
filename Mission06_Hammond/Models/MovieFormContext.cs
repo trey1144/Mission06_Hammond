@@ -8,7 +8,7 @@ namespace Mission06_Hammond.Models
         {
 
         }
-        public DbSet<Form> Forms { get; set; } // create a DbSet property
+        public DbSet<Movies> Movies { get; set; } // create a DbSet property
 
         public DbSet<Category> Categories { get; set; }
 
