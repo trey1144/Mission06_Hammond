@@ -1,6 +1,9 @@
 ﻿@model Movies
 
-<!-- This is the form that is filled out and then the data is sent to the database -->
+<!-- This is the form that is filled out and then the data is sent to the database.
+There is also a validation summary that will display any errors that occur 
+when the form is submitted like if the user tries to submit the form without the Title field.
+-->
 
 <h1>Enter Movies into the collection:</h1>
 
@@ -36,8 +39,8 @@
 	<br />
 	<label asp-for="Edited">Edited:</label>
 	<select asp-for="Edited">
-		<option value="False">No</option>
-		<option value="True">Yes</option>
+		<option value=0>No</option>
+		<option value=1>Yes</option>
 	</select>
 	<br />
 	<label asp-for="LentTo">Lent to:</label>
@@ -45,8 +48,8 @@
 	<br />
 	<label asp-for="CopiedToPlex">Copied to Plex:</label>
 	<select asp-for="CopiedToPlex">
-		<option value="False">No</option>
-		<option value="True">Yes</option>
+		<option value=0>No</option>
+		<option value=1>Yes</option>
 	</select>
 	<br />
 	<label asp-for="Notes">Notes:</label>

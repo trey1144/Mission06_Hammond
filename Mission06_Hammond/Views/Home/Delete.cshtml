@@ -3,6 +3,10 @@
 <h2>Confirm Deletion</h2>
 <h3>@Model.Title, @Model.Year</h3>
 
+<!-- this page is to display two options to delete the record chosen or cancel. 
+	If the delete button is pressed it is deleted from the database.
+	If the cancel button is pressed it will return to the MovieList page. -->
+
 <form method="post">
 
 	<input type="hidden" asp-for="MovieID" />

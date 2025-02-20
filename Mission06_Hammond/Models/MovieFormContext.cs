@@ -12,7 +12,7 @@ namespace Mission06_Hammond.Models
 
         public DbSet<Category> Categories { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder) //seed data
+        protected override void OnModelCreating(ModelBuilder modelBuilder) //seed data for the database if not already in there
         {
             modelBuilder.Entity<Category>().HasData(
                 new Category { CategoryID = 1, CategoryName = "Miscellaneous" },
